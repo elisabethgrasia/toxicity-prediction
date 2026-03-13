@@ -1,0 +1,3 @@
+Model,ROC-AUC
+Multitask NN,{'roc_auc_score': 0.7047175099938134}
+Graph NN,{'roc_auc_score': 0.7609823055919439}
