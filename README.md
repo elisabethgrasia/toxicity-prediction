@@ -43,14 +43,16 @@ The evaluation pipeline:
 #### Results
 | Model | ROC-AUC |
 |------|------|
-| Logistic Regression | 0.7777 |
+| Logistic Regression | 0.7795 |
 | Random Forest | 0.7721 |
 | Multitask NN | 0.7043 |
 | Graph NN | 0.7502 |
 
 #### Discussion
 
-The results show that classical fingerprint-based models such as Logistic Regression and Random Forest perform strongly on this dataset.
+The results show that classical fingerprint-based models such as Logistic Regression and Random Forest perform strongly on this dataset. 
+
+In Logistic Regression model, hyperparameter tuning of the regularization parameter C shows that stronger regularization improves performance. The best validation ROC-AUC (0.7795) was obtained with C = 0.05, indicating that controlling model complexity is important for high-dimensional molecular fingerprint features.
 
 The Graph Neural Network achieves competitive performance while learning directly from molecular graph structure.
 
