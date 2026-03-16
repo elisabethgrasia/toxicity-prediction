@@ -45,7 +45,7 @@ The evaluation pipeline:
 |------|------|
 | Logistic Regression | 0.7795 |
 | Random Forest | 0.7721 |
-| Multitask NN | 0.7124 |
+| Multitask NN | 0.7109 |
 | Graph NN | 0.7502 |
 
 #### Discussion
