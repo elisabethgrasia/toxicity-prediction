@@ -1,0 +1,6 @@
+Model,ROC-AUC
+Logistic Regression,0.7079232111692845
+Random Forest,0.7747062245491565
+Multiclass Classification,0.7056238170934135
+Graph Convolution Network,0.7557565910732245
+AttentiveFP,0.7416234371018283

@@ -1,0 +1,4 @@
+Model,ROC-AUC
+Multiclass Classification,0.7056238170934135
+Graph Convolution Network,0.7557565910732245
+AttentiveFP,0.7416234371018283
