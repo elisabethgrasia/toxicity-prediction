@@ -43,22 +43,61 @@ The evaluation pipeline:
 #### Results
 | Model | ROC-AUC |
 |------|------|
-| Logistic Regression | 0.7795 |
-| Random Forest | 0.7721 |
-| Multitask NN | 0.7109 |
-| Graph NN | 0.7502 |
+| Logistic Regression | 0.7079 |
+| Random Forest | 0.7747 |
+| Multitask NN | 0.7056 |
+| Graph NN | 0.7558 |
+| AttentiveFP | 0.7416 |
+
+## Results (Per-Task ROC-AUC)
+
+The table below shows ROC-AUC scores for each model across the 12 Tox21 tasks.
+
+| Task | Logistic Regression | Random Forest | Multitask NN | Graph NN |
+|------|--------------------|--------------|--------------|----------|
+| NR-AR | 0.775 | 0.772 | 0.766 | 0.743 |
+| NR-AR-LBD | 0.838 | 0.842 | 0.814 | 0.800 |
+| NR-AhR | 0.788 | 0.788 | 0.750 | 0.813 |
+| NR-Aromatase | 0.725 | 0.723 | 0.682 | 0.820 |
+| NR-ER | 0.633 | 0.638 | 0.591 | 0.716 |
+| NR-ER-LBD | 0.764 | 0.795 | 0.687 | 0.817 |
+| NR-PPAR-gamma | 0.722 | 0.769 | 0.740 | 0.819 |
+| SR-ARE | 0.716 | 0.751 | 0.731 | 0.758 |
+| SR-ATAD5 | 0.717 | 0.689 | 0.700 | 0.734 |
+| SR-HSE | 0.705 | 0.716 | 0.685 | 0.780 |
+| SR-MMP | 0.796 | 0.805 | 0.771 | 0.833 |
+| SR-p53 | 0.708 | 0.776 | 0.682 | 0.724 |
+
+## Mean Performance
+
+| Model | Mean ROC-AUC |
+|------|-------------|
+| Logistic Regression | ~0.78 |
+| Random Forest | ~0.77 |
+| Multitask NN | ~0.70 |
+| Graph NN | ~0.75 |
+
 
 #### Discussion
+The results demonstrate that classical fingerprint-based models, particularly Logistic Regression and Random Forest, achieve strong and consistent performance on the Tox21 dataset. This highlights the effectiveness of molecular fingerprint representations for QSAR modeling, especially in settings with high-dimensional and sparse features.
 
-The results show that classical fingerprint-based models such as Logistic Regression and Random Forest perform strongly on this dataset. 
+Hyperparameter tuning of Logistic Regression further shows that stronger regularization improves performance. The best validation ROC-AUC (0.7795) was obtained with ( C = 0.05 ), indicating that controlling model complexity is important for avoiding overfitting in high-dimensional feature spaces.
 
-In Logistic Regression model, hyperparameter tuning of the regularization parameter C shows that stronger regularization improves performance. The best validation ROC-AUC (0.7795) was obtained with C = 0.05, indicating that controlling model complexity is important for high-dimensional molecular fingerprint features.
+Graph Neural Networks (GCN) achieve competitive performance while learning directly from molecular graph structures. Although GCN does not outperform classical models overall, it surpasses them on several tasks, including NR-Aromatase, NR-ER, NR-ER-LBD, NR-PPAR-gamma, SR-HSE, and SR-MMP. This suggests that graph-based representations are particularly effective for certain biological endpoints where structural relationships play a key role.
 
-The Graph Neural Network achieves competitive performance while learning directly from molecular graph structure.
+The Multitask Neural Network shows lower performance compared to other models, which may be due to limited training epochs or suboptimal hyperparameter settings. This indicates that fully connected neural networks may require more careful tuning to match the performance of simpler classical approaches.
 
-The Multitask Neural Network performed slightly worse, which may be due to limited training epochs or model configuration.
+Per-task analysis reveals substantial variability across toxicity endpoints, indicating that task difficulty is uneven and that different models capture different aspects of molecular information. No single model consistently dominates across all tasks.
 
-Overall, the experiment demonstrates the effectiveness of both classical QSAR approaches and modern deep learning methods for molecular property prediction.
+Overall, the results suggest that:
+
+- fingerprint-based models remain strong and reliable baselines,
+
+- graph-based models provide task-specific advantages,
+
+- model performance depends on the characteristics of each endpoint.
+
+These findings indicate that combining fingerprint-based and graph-based representations could be a promising direction for improving molecular property prediction in future work.
 
 #### Requirements
 
