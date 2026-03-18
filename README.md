@@ -3,15 +3,25 @@
 
 This project evaluates several machine learning and deep learning models for molecular toxicity prediction using the Tox21 dataset. The goal is to compare classical QSAR models with neural network approaches for predicting biological activity from molecular structure.
 
+#### Project Goal
+
+This project demonstrates a typical QSAR modeling workflow:
+
+
+**molecular structure → feature representation → ML model → toxicity prediction**
+
+
+and compares classical machine learning approaches with graph-based deep learning models.
+
 #### Dataset
 
 The Tox21 dataset contains chemical compounds represented as SMILES strings and includes 12 toxicity prediction tasks related to nuclear receptor signaling and stress response pathways.
 
 Each molecule is converted into features using:
 
-ECFP fingerprints for classical machine learning models
+- ECFP fingerprints for classical machine learning models
 
-molecular graphs for graph neural networks
+- Molecular graphs (atoms and bonds structures) for neural networks
 
 The dataset is loaded using DeepChem and split into training, validation, and test sets using a scaffold split, which ensures that molecules with different chemical scaffolds appear in different splits.
 
@@ -19,12 +29,15 @@ The dataset is loaded using DeepChem and split into training, validation, and te
 
 The following models were implemented and compared:
 
-Logistic Regression – baseline QSAR model using molecular fingerprints
+- Logistic Regression – baseline QSAR model using molecular fingerprints
 
-Random Forest – ensemble learning model for nonlinear feature interactions
+- Random Forest – ensemble learning model for nonlinear feature interactions
 
-Multitask Neural Network – fully connected neural network predicting all tasks simultaneously
+- Multitask Neural Network – fully connected neural network predicting all tasks simultaneously
 
+- Graph Convolution Network - simple neighbour averaging
+
+- AttentiveFP - Attention of the importance of neighbours combined with message passing
 
 #### Evaluation
 
@@ -38,9 +51,12 @@ The evaluation pipeline:
 2. Tune or compare models using the validation set
 
 
-3. Report final performance on the test set
+3. Report final performance
 
 #### Results
+This result is directly gained from the model.
+
+
 | Model | ROC-AUC |
 |------|------|
 | Logistic Regression | 0.7079 |
@@ -49,7 +65,7 @@ The evaluation pipeline:
 | Graph NN | 0.7558 |
 | AttentiveFP | 0.7416 |
 
-## Results (Per-Task ROC-AUC)
+**Results Per-Task ROC-AUC**
 
 The table below shows ROC-AUC scores for each model across the 12 Tox21 tasks.
 
@@ -68,7 +84,7 @@ The table below shows ROC-AUC scores for each model across the 12 Tox21 tasks.
 | SR-MMP | 0.796 | 0.805 | 0.771 | 0.833 |
 | SR-p53 | 0.708 | 0.776 | 0.682 | 0.724 |
 
-## Mean Performance
+The mean performance from each task for each model.
 
 | Model | Mean ROC-AUC |
 |------|-------------|
@@ -112,19 +128,3 @@ Key libraries used in this project:
 - DGL
 
 - RDKit
-
-#### Project Goal
-
-This project demonstrates a typical QSAR modeling workflow:
-
-
-**molecular structure → feature representation → ML model → toxicity prediction**
-
-
-and compares classical machine learning approaches with graph-based deep learning models.
-
-
-#### Notes
-Graph Neural Network (GCN) – operates directly on molecular graph representations
-
-Classical models use features derived from molecular fingerprints, while graph neural networks learn representations directly from atom and bond structures.
